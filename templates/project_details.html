@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section">
+    <div style="margin-bottom: 2rem;">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">man {{ project.name | replace(" ", "-") | lower }}</span>
+    </div>
+
+    <div class="command-output">
+
+        <div class="detail-section">
+            <span class="section-title">NAME</span>
+            <div class="section-content">{{ project.name }} - {{ project.type }}</div>
+        </div>
+
+        <div class="detail-section">
+            <span class="section-title">SYNOPSIS</span>
+            <div class="section-content">
+                <div><span class="label">Mission:</span> {{ project.mission }}</div>
+                <div style="margin-top: 0.25rem;"><span class="label">Status:</span> <span class="status-badge">{{
+                        project.status }}</span></div>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <span class="section-title">DESCRIPTION</span>
+            <div class="section-content">{{ project.description }}</div>
+        </div>
+
+        <div class="detail-section">
+            <span class="section-title">ARCHITECTURE</span>
+            <div class="section-content">{{ project.details.architecture }}</div>
+        </div>
+
+        <div class="detail-section">
+            <span class="section-title">FEATURES</span>
+            <div class="section-content">
+                <ul class="feature-list">
+                    {% for feature in project.details.features %}
+                    <li>{{ feature }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <span class="section-title">CHALLENGES</span>
+            <div class="section-content">{{ project.details.challenges }}</div>
+        </div>
+
+        <div class="action-area">
+            <a href="{{ url_for('projects') }}" data-command="./run_projects.sh" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Projects List
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

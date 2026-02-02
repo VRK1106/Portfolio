@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reshekumar@portfolio:~</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐧</text></svg>">
+    <!-- Google Fonts for Monospace -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&family=Roboto+Mono:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <canvas id="matrix-bg"></canvas>
+
+    <div id="boot-overlay"></div>
+
+    <!-- Penguin Loading Screen -->
+    <div id="penguin-overlay" style="display: none;">
+        <div class="penguin-container">
+            <pre class="penguin-art">
+  _
+  (<span id="penguin-face">^v^</span>)
+  // > \\
+  (\_=_/)
+  ^^ ^^
+            </pre>
+
+            <div class="loading-text">LOADING RESOURCES...</div>
+            <div class="progress-bar-container">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="terminal-window">
+        <!-- CRT Effects Overlays -->
+        <div class="scanline"></div>
+        <div class="crt-flicker"></div>
+
+        <div class="terminal-header">
+            <div class="terminal-buttons" style="display: flex; gap: 8px; align-items: center;">
+                <div class="t-btn close"></div>
+                <div class="t-btn minimize"></div>
+                <div class="t-btn maximize"></div>
+                <!-- Universal Back Button -->
+                {% if request.endpoint != 'home' %}
+                <a href="javascript:history.back()" class="cmd-link"
+                    style="margin-left: 1rem; color: var(--dim-text); font-size: 0.8rem; text-decoration: none;"
+                    title="Go Back">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+                {% endif %}
+            </div>
+            <!-- System Status Widget -->
+            <div class="system-status-bar">
+                <div class="status-item"><i class="fas fa-microchip"></i> CPU: <span id="cpu-load">12%</span></div>
+                <div class="status-item"><i class="fas fa-memory"></i> MEM: <span id="mem-load">4.2GB</span></div>
+                <div class="status-item"><i class="fas fa-clock"></i> UPK: <span id="uptime">00:00:00</span></div>
+            </div>
+            <div class="terminal-title">Reshekumar@portfolio:~</div>
+        </div>
+
+        <div class="terminal-body">
+            <aside class="sidebar">
+                <a href="{{ url_for('home') }}" class="nav-item {% if request.endpoint == 'home' %}active{% endif %}"
+                    data-command="cd ~">
+                    <i class="fas fa-terminal notification-icon"></i>&nbsp; /home
+                </a>
+                <a href="{{ url_for('about') }}" class="nav-item {% if request.endpoint == 'about' %}active{% endif %}"
+                    data-command="cat about_me.txt">
+                    <i class="fas fa-user-astronaut"></i>&nbsp; /about
+                </a>
+                <a href="{{ url_for('skills') }}"
+                    class="nav-item {% if request.endpoint == 'skills' %}active{% endif %}"
+                    data-command="ls -la /skills/">
+                    <i class="fas fa-code"></i>&nbsp; /skills
+                </a>
+                <a href="{{ url_for('projects') }}"
+                    class="nav-item {% if request.endpoint == 'projects' %}active{% endif %}"
+                    data-command="./run_projects.sh">
+                    <i class="fas fa-project-diagram"></i>&nbsp; /projects
+                </a>
+                <a href="{{ url_for('contact') }}"
+                    class="nav-item {% if request.endpoint == 'contact' %}active{% endif %}" data-command="exit">
+                    <i class="fas fa-envelope-open-text"></i>&nbsp; /contact
+                </a>
+            </aside>
+
+            <div class="terminal-content">
+                {% block content %}{% endblock %}
+
+                <!-- Persistent footer or current command prompt -->
+                <div id="mobile-input-bar"
+                    style="margin-top: 3rem; border-top: 1px dashed var(--border-color); padding-top: 1rem; display: flex; align-items: center;">
+                    <span class="command-prompt">Reshekumar@portfolio:~$</span>
+                    <input type="text" id="cli-input" autocomplete="off" spellcheck="false"
+                        placeholder="Type a command...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Set active class based on URL (fallback for client-side)
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('.nav-item').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+
+</html>

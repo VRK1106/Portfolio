@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section" id="type-container" style="visibility: hidden;">
+    <div style="margin-bottom: 2rem;">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">./open_comm_channel.sh --secure</span>
+    </div>
+
+    <div class="transmitter-status">
+        <div class="signal-bars">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <div>
+            <div style="font-weight: bold;">SECURE UPLINK ESTABLISHED</div>
+            <div style="font-size: 0.8rem; opacity: 0.8;">ENCRYPTION: 256-BIT AES // LATENCY: 12ms</div>
+        </div>
+    </div>
+
+    <div class="contact-grid">
+        <!-- Email -->
+        <div class="contact-card">
+            <i class="fas fa-envelope-open-text contact-icon"></i>
+            <div class="contact-label">DIRECT MESSAGE</div>
+            <div class="contact-value">{{ data.contact.email }}</div>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ data.contact.email }}" target="_blank"
+                class="contact-btn">SEND TRANSMISSION</a>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="contact-card">
+            <i class="fab fa-linkedin contact-icon"></i>
+            <div class="contact-label">PROFESSIONAL NET</div>
+            <div class="contact-value">linkedin.com/in/reshekumar</div>
+            <a href="{{ data.contact.linkedin }}" target="_blank" class="contact-btn">CONNECT</a>
+        </div>
+
+
+    </div>
+
+    <div style="margin-top: 3rem; text-align: center; color: var(--dim-text); font-size: 0.8rem;">
+        <i class="fas fa-satellite-dish"></i> Awaiting incoming signals...
+    </div>
+</div>
+{% endblock %}

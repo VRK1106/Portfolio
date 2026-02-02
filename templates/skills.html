@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section" id="type-container" style="visibility: hidden;">
+    <div style="margin-bottom: 2rem;">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">ls -la /skills/ --format=grid</span>
+    </div>
+
+    <div class="skills-grid">
+        {% for category, skills in data.skills.items() %}
+        <div class="skill-category-card">
+            <div class="category-title">
+                <i class="fas fa-folder-open"></i> {{ category }}/
+            </div>
+
+            {% for skill in skills %}
+            <div class="skill-item">
+                <div class="skill-header">
+                    <span>{{ skill.name }}</span>
+                    <span style="color: var(--dim-text); font-size: 0.8rem;">[LOADED]</span>
+                </div>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" style="--skill-width: {{ skill.level }}%;"></div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div>
+
+    <div
+        style="margin-top: 2rem; color: var(--dim-text); border-top: 1px dashed var(--border-color); padding-top: 1rem;">
+        {% set total_skills = 0 %}
+        {% for skill_list in data.skills.values() %}
+        {% set total_skills = total_skills + skill_list|length %}
+        {% endfor %}
+        <i class="fas fa-info-circle"></i> Summary: {{ data.skills|length }} directories mounted, {{ total_skills }}
+        modules active.
+    </div>
+</div>
+{% endblock %}

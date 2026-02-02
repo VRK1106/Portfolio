@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section" id="type-container" style="visibility: hidden;">
+
+    <!-- Header Info -->
+    <div style="margin-bottom: 2rem;">
+        <div>Last login: <span id="login-time"></span> on ttys000</div>
+        <div style="margin-top: 0.5rem;">
+            <span class="command-prompt">Reshekumar@portfolio:~$</span>
+            <span class="command-text">./init_dashboard.sh</span>
+        </div>
+        <div style="color: var(--accent-cyan); font-weight: bold; font-size: 1.5rem; margin-top: 0.5rem;"
+            class="glow-cyan">
+            {{ data.name }}
+        </div>
+        <div style="color: var(--dim-text);">
+            {{ data.tagline }}
+        </div>
+    </div>
+
+    <!-- Dashboard Grid -->
+    <div class="dashboard-grid">
+        <!-- System Info -->
+        <div class="stat-card">
+            <span class="stat-label">System Kernel</span>
+            <span class="stat-value" style="font-size: 1.1rem;">Linux 5.15.0-generic</span>
+            <div style="margin-top: auto; color: var(--accent-green); font-size: 0.8rem;">
+                <i class="fas fa-check-circle"></i> ONLINE
+            </div>
+        </div>
+
+        <!-- Uptime -->
+        <div class="stat-card">
+            <span class="stat-label">Session Uptime</span>
+            <span class="stat-value" id="session-time">00:00:12</span>
+            <div style="margin-top: auto; color: var(--accent-yellow); font-size: 0.8rem;">
+                <i class="fas fa-bolt"></i> ACTIVE
+            </div>
+        </div>
+
+        <!-- Project Stats -->
+        <div class="stat-card">
+            <span class="stat-label">Projects Deployed</span>
+            <span class="stat-value">{{ data.projects|length }}</span>
+            <div style="margin-top: auto; color: var(--accent-cyan); font-size: 0.8rem;">
+                <a href="{{ url_for('projects') }}" style="color: inherit; border: none;">[ VIEW ALL ]</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Available Commands -->
+    <div style="margin-top: 1rem;">
+        <div style="color: var(--accent-green); margin-bottom: 0.5rem;">
+            > Available Commands:
+        </div>
+        <table class="command-table">
+            <thead>
+                <tr>
+                    <th>Command</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span style="color: var(--accent-yellow);">cat about_me.txt</span></td>
+                    <td>Displays profile information and background.</td>
+                    <td><a href="{{ url_for('about') }}" class="cmd-link" data-command="cat about_me.txt">[ EXECUTE
+                            ]</a></td>
+                </tr>
+                <tr>
+                    <td><span style="color: var(--accent-yellow);">ls -la /skills/</span></td>
+                    <td>Lists technical skills and proficiency.</td>
+                    <td><a href="{{ url_for('skills') }}" class="cmd-link" data-command="ls -la /skills/">[ EXECUTE
+                            ]</a></td>
+                </tr>
+                <tr>
+                    <td><span style="color: var(--accent-yellow);">./run_projects.sh</span></td>
+                    <td>Executes project deployment logs.</td>
+                    <td><a href="{{ url_for('projects') }}" class="cmd-link" data-command="./run_projects.sh">[ EXECUTE
+                            ]</a></td>
+                </tr>
+                <tr>
+                    <td><span style="color: var(--accent-yellow);">exit</span></td>
+                    <td>Terminates session and opens contact info.</td>
+                    <td><a href="{{ url_for('contact') }}" class="cmd-link" data-command="exit">[ EXECUTE ]</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div
+        style="margin-top: 2rem; border-left: 3px solid var(--accent-green); padding-left: 1rem; color: var(--dim-text); font-style: italic;">
+        Tip: You can navigate by clicking the command links above, using the sidebar, or typing commands in the input
+        bar below.
+    </div>
+
+</div>
+
+<script>
+    // Simple session timer
+    let seconds = 0;
+    setInterval(() => {
+        seconds++;
+        const date = new Date(0);
+        date.setSeconds(seconds);
+        const timeString = date.toISOString().substr(11, 8);
+        document.getElementById('session-time').innerText = timeString;
+    }, 1000);
+</script>
+
+<script>
+    const now = new Date();
+    document.getElementById('login-time').innerText = now.toString().split(' GMT')[0];
+</script>
+{% endblock %}

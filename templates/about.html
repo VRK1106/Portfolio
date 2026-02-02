@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section" id="type-container" style="visibility: hidden;">
+    <!-- Command 1: fetch_profile -->
+    <div class="command-block">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">fetch_profile --verbose</span>
+        <div class="command-output"
+            style="margin-top: 0.5rem; font-family: 'Courier New', monospace; white-space: pre; line-height: 1.2;">
+            SYSTEM ARCHITECT
+            -------------------------------------------------------
+            [ ] OS : Linux (Ubuntu/WSL)
+            [ ] Role: Backend & Cloud-Native Engineer
+            [ ] Shell: Zsh / Bash
+            [ ] Lang: Python, Java
+            [ ] Core: Docker, Kubernetes
+            [ ] Hardware: Raspberry Pi, sensors
+            -------------------------------------------------------
+            Uptime : 19 Years
+            Status : Building scalable infrastructure
+        </div>
+    </div>
+
+    <!-- Command 2: cat about_me.txt -->
+    <div class="command-block" style="margin-top: 2rem;">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">cat about_me.txt</span>
+        <div class="command-output" style="margin-top: 1rem; max-width: 800px; line-height: 1.6;">
+            > <span style="color: #00ff00; font-weight: bold;">IDENTITY_VERIFIED:</span> I am a Backend Engineer who
+            refuses to ignore the hardware. While others treat the server as a black box, I optimize for what’s inside
+            it.<br><br>
+
+            > <span style="color: #00ff00; font-weight: bold;">MISSION:</span> Bridging the gap between high-level
+            Python logic and low-level system performance. Whether orchestrating containers with Kubernetes or
+            engineering efficient data structures for real-time processing, I build systems that are not just
+            functional, but efficient.<br><br>
+
+            > <span style="color: #00ff00; font-weight: bold;">CURRENT_OBJECTIVE:</span> Leveraging Linux environments
+            to deploy scalable, containerized solutions (Docker) that solve real-world data problems.
+        </div>
+    </div>
+</div>
+{% endblock %}

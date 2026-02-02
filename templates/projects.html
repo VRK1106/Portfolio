@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="output-section" id="type-container" style="visibility: hidden;">
+    <div style="margin-bottom: 1.5rem;">
+        <span class="command-prompt">Reshekumar@portfolio:~$</span>
+        <span class="command-text">./run_projects_card_view.sh</span>
+    </div>
+
+    <div class="project-container">
+
+        <!-- Project 01: Campity -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-title"><i class="fas fa-university"></i> Campity</div>
+                <div class="project-status">DEPLOYED</div>
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">TYPE:</span> Campus Digital Platform
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">MISSION:</span> Solving daily student problems.
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">STACK:</span>
+                <span class="tech-tag">Java</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">SQL</span>
+                <span class="tech-tag">Docker</span>
+            </div>
+            <div class="project-info-row" style="color: var(--dim-text); margin-top: 1rem; line-height: 1.5;">
+                Engineered a scalable backend to handle high-concurrency student traffic. Containerized services for
+                consistent deployment.
+            </div>
+            <div class="project-links">
+
+                <a href="/project/campity" class="icon-link">
+                    <i class="fas fa-external-link-alt"></i> details
+                </a>
+            </div>
+        </div>
+
+        <!-- Project 02: OptiSlot -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-title"><i class="fas fa-parking"></i> OptiSlot</div>
+                <div class="project-status">DEPLOYED</div>
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">TYPE:</span> Smart City / IoT
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">MISSION:</span> AI-driven parking optimization.
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">STACK:</span>
+                <span class="tech-tag">K8s</span>
+                <span class="tech-tag">Docker</span>
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">OpenCV</span>
+            </div>
+            <div class="project-info-row" style="color: var(--dim-text); margin-top: 1rem; line-height: 1.5;">
+                Architected a "Gate-Centric" system utilizing Bin-Packing algorithms to optimize parking density.
+                Orchestrated microservices on K8s.
+            </div>
+            <div class="project-links">
+
+                <a href="/project/optislot" class="icon-link">
+                    <i class="fas fa-external-link-alt"></i> details
+                </a>
+            </div>
+        </div>
+
+        <!-- Project 03: Automatic Billing -->
+        <div class="project-card">
+            <div class="project-header">
+                <div class="project-title"><i class="fas fa-file-invoice-dollar"></i> AutoBilling</div>
+                <div class="project-status">DEPLOYED</div>
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">TYPE:</span> Retail Automation / FinTech
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">MISSION:</span> Streamlining retail operations.
+            </div>
+            <div class="project-info-row">
+                <span class="info-label">STACK:</span>
+                <span class="tech-tag">Flask</span>
+                <span class="tech-tag">Pandas</span>
+                <span class="tech-tag">REST APIs</span>
+            </div>
+            <div class="project-info-row" style="color: var(--dim-text); margin-top: 1rem; line-height: 1.5;">
+                Designed a robust billing engine dealing with process-intensive calculation. Ensured data integrity
+                using optimized Pandas operations.
+            </div>
+            <div class="project-links">
+
+                <a href="/project/automatic-billing" class="icon-link">
+                    <i class="fas fa-external-link-alt"></i> details
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="color: var(--accent-green); margin-top: 2rem;">
+        >> Execution complete. 3 projects loaded.
+    </div>
+</div>
+{% endblock %}
