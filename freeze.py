@@ -2,10 +2,7 @@ from flask_frozen import Freezer
 from app import app
 from data import portfolio_data
 
-# Configure Freezer
-# We'll build to a folder named 'build' for clarity
 app.config['FREEZER_DESTINATION'] = 'build'
-# Remove existing build files to ensure clean state
 app.config['FREEZER_REMOVE_EXTRA_FILES'] = True
 
 freezer = Freezer(app)
